@@ -1,6 +1,7 @@
 ﻿namespace FunctionProvider.IO
 {
     using SIO = System.IO;
+
     public class Directory
     {
         /// <summary>
