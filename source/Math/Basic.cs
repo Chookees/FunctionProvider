@@ -2,7 +2,7 @@
 {
     using SM = System.Math;
 
-    public class Math
+    public class Basic
     {
         public static double Pi()
         {
