@@ -1,6 +1,5 @@
 ﻿namespace FunctionProvider.IO
 {
-    using System.Runtime.CompilerServices;
     using SIO = System.IO;
     public class Directory
     {
@@ -9,7 +8,7 @@
             return SIO.DriveInfo.GetDrives();
         }
 
-        public static DriveInfo GetDriveWithMostSpace()
+        public static DriveInfo? GetDriveWithMostSpace()
         {
             DriveInfo mostSpaceDrive = new DriveInfo("temp");
 
@@ -21,7 +20,14 @@
                 }
             }
 
-            return mostSpaceDrive;
+            if (mostSpaceDrive.Name != "temp")
+            {
+                return mostSpaceDrive;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static FileInfo[] GetAllFilesFromDirectory(string pathToDirectory)

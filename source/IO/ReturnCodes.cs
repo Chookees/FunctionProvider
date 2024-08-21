@@ -1,4 +1,4 @@
-﻿namespace FunctionProvider
+﻿namespace FunctionProvider.IO
 {
     public enum ReturnCodes
     {
