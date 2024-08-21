@@ -12,7 +12,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
 ## Functions
 1) IO
 2) Network
-3) XX
+3) Math
 4) XX
 5) Various
 
@@ -20,7 +20,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
 
 ### 2. Network
 
-### 3. XX
+### 3. Math
 
 ### 4. XX
 
