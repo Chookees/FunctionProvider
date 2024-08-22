@@ -7,12 +7,12 @@
         /// <summary>
         /// 3.14159265358979323846
         /// </summary>
-        public static double Pi => SM.PI;
+        public static double Pi => 3.14159265358979323846;
 
         /// <summary>
         /// 2.7182818284590452354
         /// </summary>
-        public static double E => SM.E;
+        public static double E => 2.7182818284590452354;
 
         /// <summary>
         /// Rounds a decimal to two numbers after comma.
