@@ -23,6 +23,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Edit File
     - Create File
     - Delete File
+    - Copy File
 - Directory
     - Get Drives
     - Get Drive with most free space
@@ -36,6 +37,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Rounding to two numbers after comma (decimal, double)
     - Power of
     - Squareroot
+    - Calculate standard deviation
 - Advanced
     - Tangent calculation
     - Heat Equation
@@ -47,3 +49,5 @@ This DLL is designed to streamline and enhance the development process for C# pr
 ### 4. XX
 
 ### 5. Various
+- GUID
+- String manipulation
