@@ -11,16 +11,16 @@ This DLL is designed to streamline and enhance the development process for C# pr
 
 ## Functions
 1) IO
-2) Network
-3) Math
+2) Math
+3) Network
 4) XX
 5) Various
 
 ### 1. IO
 
-### 2. Network
+### 2. Math
 
-### 3. Math
+### 3. Network
 
 ### 4. XX
 
