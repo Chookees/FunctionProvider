@@ -17,8 +17,32 @@ This DLL is designed to streamline and enhance the development process for C# pr
 5) Various
 
 ### 1. IO
+- File
+    - Change Directory of File
+    - Change Name of File
+    - Change Extension of File
+    - Read File
+    - Edit File
+    - Create File
+    - Delete File
+- Directory
+    - Get Drives
+    - Get Drive with most free space
+    - Get all files from a directory
+    - Get specific file from directory
 
 ### 2. Math
+- Basic
+    - PI
+    - E
+    - Rounding to two numbers after comma (decimal, double)
+    - Power of
+    - Squareroot
+- Advanced
+    - Tangent calculation
+    - Heat Equation
+    - Torsion calculation
+    - Curvature calculation
 
 ### 3. Network
 
