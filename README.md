@@ -10,7 +10,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
 ## Functions
 1) IO
 2) Math
-3) Network
+3) XX
 4) XX
 5) Various
 
@@ -42,7 +42,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Torsion calculation
     - Curvature calculation
 
-### 3. Network
+### 3. XX
 
 ### 4. XX
 
