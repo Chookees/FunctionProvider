@@ -13,5 +13,6 @@
         FileCreationFailed = 8,
         UnableToDelete = 9,
         CreatingWriterFailed = 10,
+        CopyFailed = 11
     }
 }

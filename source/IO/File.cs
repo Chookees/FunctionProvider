@@ -71,6 +71,29 @@
         }
 
         /// <summary>
+        /// Copies a file.
+        /// </summary>
+        /// <param name="sourcePath">Source file path.</param>
+        /// <param name="destinationPath">Target file path.</param>
+        /// <returns>Returncode based on result.</returns>
+        public static ReturnCodes CopyFile(string sourcePath, string destinationPath)
+        {
+            try
+            {
+                if (SIO.File.Exists(sourcePath))
+                {
+                    SIO.File.Copy(sourcePath, destinationPath, true);
+                    return ReturnCodes.Success;
+                }
+                return ReturnCodes.ParameterInvalid;
+            }
+            catch (Exception)
+            {
+                return ReturnCodes.CopyFailed;
+            }
+        }
+
+        /// <summary>
         /// Call this first.
         /// Creates a new writer to dynamically create and fill the file.
         /// </summary>

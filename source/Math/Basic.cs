@@ -54,5 +54,17 @@
         {
             return SM.Sqrt(number);
         }
+
+        /// <summary>
+        /// Calculates the standard deviation.
+        /// </summary>
+        /// <param name="values">Double Array of values.</param>
+        /// <returns>The Standard Deviation as double.</returns>
+        public static double CalculateStandardDeviation(double[] values)
+        {
+            double mean = values.Average();
+            double sumOfSquares = values.Select(val => (val - mean) * (val - mean)).Sum();
+            return SM.Sqrt(sumOfSquares / values.Length);
+        }
     }
 }
