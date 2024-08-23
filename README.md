@@ -2,17 +2,24 @@
 This .Net8 based .dll can be imported in any C# Project.
 This DLL is designed to streamline and enhance the development process for C# projects by consolidating a variety of essential functions into a single, easy-to-use, and efficient library.
 
+## Table of Content
+1) [Key Benefits](https://github.com/Chookees/FunctionProvider/edit/main/README.md#key-benefits)
+2) [Functions](https://website-name.com)
+3) [Example Usage](https://website-name.com)
+4) [Tbd](https://website-name.com)
+5) [Tbd](https://website-name.com)
+
 ### Key Benefits:
 - Centralized Functionality: Combines multiple commonly used functions, reducing redundancy and simplifying code maintenance.
 - Ease of Use: Provides a straightforward API, making it accessible for developers of all skill levels.
 - Efficiency: Optimized for performance to ensure minimal overhead and fast execution.
 
 ## Functions
-1) IO
-2) Math
-3) XX
-4) XX
-5) Various
+1) [IO](https://github.com/Chookees/FunctionProvider/edit/main/README.md#1-io)
+2) [Math](https://github.com/Chookees/FunctionProvider/edit/main/README.md#2-math)
+3) [XX](https://github.com/Chookees/FunctionProvider/edit/main/README.md#3-xx)
+4) [XX](https://github.com/Chookees/FunctionProvider/edit/main/README.md#4-xx)
+5) [Various](https://github.com/Chookees/FunctionProvider/edit/main/README.md#5-various)
 
 ### 1. IO
 - File
