@@ -158,5 +158,47 @@
         }
 
         #endregion
+
+        #region 2D-Wave equation
+
+        /// <summary>
+        /// Solves the 2D wave equation using the finite difference method.
+        /// </summary>
+        /// <param name="u">Initial displacement matrix.</param>
+        /// <param name="v">Initial velocity matrix.</param>
+        /// <param name="c">Wave speed.</param>
+        /// <param name="dt">Time step size.</param>
+        /// <param name="dx">Spatial step size.</param>
+        /// <param name="timeSteps">Number of time steps to simulate.</param>
+        /// <returns>The displacement matrix after the specified number of time steps.</returns>
+        public static double[,] SolveWaveEquation(double[,] u, double[,] v, double c, double dt, double dx, int timeSteps)
+        {
+            int nx = u.GetLength(0);
+            int ny = u.GetLength(1);
+            double[,] uPrev = (double[,])u.Clone();
+            double[,] uNext = new double[nx, ny];
+
+            for (int t = 0; t < timeSteps; t++)
+            {
+                for (int i = 1; i < nx - 1; i++)
+                {
+                    for (int j = 1; j < ny - 1; j++)
+                    {
+                        double laplacian = (u[i + 1, j] - 2 * u[i, j] + u[i - 1, j]) / (dx * dx)
+                                         + (u[i, j + 1] - 2 * u[i, j] + u[i, j - 1]) / (dx * dx);
+
+                        uNext[i, j] = 2 * u[i, j] - uPrev[i, j] + (c * c * dt * dt) * laplacian;
+                    }
+                }
+
+                // Update previous and current displacement matrices
+                uPrev = (double[,])u.Clone();
+                u = (double[,])uNext.Clone();
+            }
+
+            return u;
+        }
+
+        #endregion
     }
 }
