@@ -1,9 +1,7 @@
-﻿using System.IO.Compression;
-using System.Text;
-
-namespace FunctionProvider.Various
+﻿namespace FunctionProvider.Various
 {
-
+    using System.IO.Compression;
+    using System.Text;
 
     public class StringManipulation
     {
