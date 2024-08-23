@@ -2,8 +2,18 @@
 {
     using SM = System.Math;
 
-    public class Advanced
+    public sealed class Advanced
     {
+        #region Lazy initialization
+
+        private static readonly Lazy<Advanced> lazy = new Lazy<Advanced>(() => new Advanced());
+
+        public static Advanced Task { get { return lazy.Value; } }
+
+        private Advanced() { }
+
+        #endregion
+
         #region Tangent calculation
 
         /// <summary>
@@ -13,7 +23,7 @@
         /// <param name="f">The function for which the tangent line is calculated.</param>
         /// <param name="x">The point at which the tangent line is calculated.</param>
         /// <returns>Returns the slope m and y-intercept b as a tuple.</returns>
-        public static (double slope, double intercept) Tangent(Func<double, double> f, double x)
+        public (double slope, double intercept) Tangent(Func<double, double> f, double x)
         {
             // Calculate the function value at the point x
             double y = f(x);
@@ -35,7 +45,7 @@
         /// <param name="x">The point at which the derivative is calculated.</param>
         /// <param name="h">A small increment used to approximate the derivative (default is (1 \times 10^{-10}))</param>
         /// <returns>The approximate value of the derivative at point x.</returns>
-        private static double DerivativeForTangent(Func<double, double> f, double x, double h = 1e-10)
+        private double DerivativeForTangent(Func<double, double> f, double x, double h = 1e-10)
         {
             return (f(x + h) - f(x)) / h;
         }
@@ -54,7 +64,7 @@
         /// <param name="dx">Spatial step size.</param>
         /// <param name="timeSteps">Number of time steps to simulate.</param>
         /// <returns>Final state of the grid after the specified number of time steps.</returns>
-        public static double[,] SolveHeatEquation(double[,] u, double alpha, double dt, double dx, int timeSteps)
+        public double[,] SolveHeatEquation(double[,] u, double alpha, double dt, double dx, int timeSteps)
         {
             int nx = u.GetLength(0);
             int ny = u.GetLength(1);
@@ -90,7 +100,7 @@
         /// <param name="z">Function representing z(t).</param>
         /// <param name="t">Parameter value at which to calculate the torsion.</param>
         /// <returns>Torsion at the given parameter t.</returns>
-        public static double CalculateTorsion(Func<double, double> x, Func<double, double> y, Func<double, double> z, double t)
+        public double CalculateTorsion(Func<double, double> x, Func<double, double> y, Func<double, double> z, double t)
         {
             double dx = DerivativeTorsion(x, t);
             double dy = DerivativeTorsion(y, t);
@@ -108,17 +118,17 @@
             return numerator / denominator;
         }
 
-        private static double DerivativeTorsion(Func<double, double> f, double t, double h = 1e-5)
+        private double DerivativeTorsion(Func<double, double> f, double t, double h = 1e-5)
         {
             return (f(t + h) - f(t - h)) / (2 * h);
         }
 
-        private static double SecondDerivativeTorsion(Func<double, double> f, double t, double h = 1e-5)
+        private double SecondDerivativeTorsion(Func<double, double> f, double t, double h = 1e-5)
         {
             return (f(t + h) - 2 * f(t) + f(t - h)) / (h * h);
         }
 
-        private static double ThirdDerivativeTorsion(Func<double, double> f, double t, double h = 1e-5)
+        private double ThirdDerivativeTorsion(Func<double, double> f, double t, double h = 1e-5)
         {
             return (f(t + 2 * h) - 2 * f(t + h) + 2 * f(t - h) - f(t - 2 * h)) / (2 * h * h * h);
         }
@@ -134,7 +144,7 @@
         /// <param name="y">Function representing y(t).</param>
         /// <param name="t">Parameter value at which to calculate the curvature.</param>
         /// <returns>Curvature at the given parameter t.</returns>
-        public static double CalculateCurvature(Func<double, double> x, Func<double, double> y, double t)
+        public double CalculateCurvature(Func<double, double> x, Func<double, double> y, double t)
         {
             double dx = DerivativeCurvature(x, t);
             double dy = DerivativeCurvature(y, t);
@@ -147,12 +157,12 @@
             return numerator / denominator;
         }
 
-        private static double DerivativeCurvature(Func<double, double> f, double t, double h = 1e-5)
+        private double DerivativeCurvature(Func<double, double> f, double t, double h = 1e-5)
         {
             return (f(t + h) - f(t - h)) / (2 * h);
         }
 
-        private static double SecondDerivativeCurvature(Func<double, double> f, double t, double h = 1e-5)
+        private double SecondDerivativeCurvature(Func<double, double> f, double t, double h = 1e-5)
         {
             return (f(t + h) - 2 * f(t) + f(t - h)) / (h * h);
         }
@@ -171,7 +181,7 @@
         /// <param name="dx">Spatial step size.</param>
         /// <param name="timeSteps">Number of time steps to simulate.</param>
         /// <returns>The displacement matrix after the specified number of time steps.</returns>
-        public static double[,] SolveWaveEquation(double[,] u, double[,] v, double c, double dt, double dx, int timeSteps)
+        public double[,] SolveWaveEquation(double[,] u, double[,] v, double c, double dt, double dx, int timeSteps)
         {
             int nx = u.GetLength(0);
             int ny = u.GetLength(1);

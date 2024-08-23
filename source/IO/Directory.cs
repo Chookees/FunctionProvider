@@ -2,13 +2,23 @@
 {
     using SIO = System.IO;
 
-    public class Directory
+    public sealed class Directory
     {
+        #region Lazy initialization
+
+        private static readonly Lazy<Directory> lazy = new Lazy<Directory>(() => new Directory());
+
+        public static Directory Task { get { return lazy.Value; } }
+
+        private Directory() { }
+
+        #endregion
+
         /// <summary>
         /// Gets all Drives as DriveInfo.
         /// </summary>
         /// <returns>Array of DriveInfos</returns>
-        public static DriveInfo[] GetDrives()
+        public DriveInfo[] GetDrives()
         {
             return SIO.DriveInfo.GetDrives();
         }
@@ -17,7 +27,7 @@
         /// Gets the Drive with the most free Space.
         /// </summary>
         /// <returns>The Drive with the most free space or null if not found.</returns>
-        public static DriveInfo? GetDriveWithMostSpace()
+        public DriveInfo? GetDriveWithMostSpace()
         {
             DriveInfo mostSpaceDrive = new DriveInfo("temp");
 
@@ -44,7 +54,7 @@
         /// </summary>
         /// <param name="pathToDirectory">Path to the parent directory.</param>
         /// <returns>All files as FileInfo Array.</returns>
-        public static FileInfo[] GetAllFilesFromDirectory(string pathToDirectory)
+        public FileInfo[] GetAllFilesFromDirectory(string pathToDirectory)
         {
             DirectoryInfo directory = new DirectoryInfo(pathToDirectory);
 
@@ -57,7 +67,7 @@
         /// <param name="pathToDirectory">Path to the parent directory.</param>
         /// <param name="fileName">Name of the file to search for.</param>
         /// <returns>FileInfo of the specific file or null if not found.</returns>
-        public static FileInfo? GetSpecificFileFromDirectory(string pathToDirectory, string fileName)
+        public FileInfo? GetSpecificFileFromDirectory(string pathToDirectory, string fileName)
         {
             DirectoryInfo directory = new DirectoryInfo(pathToDirectory);
 
@@ -79,7 +89,7 @@
         /// </summary>
         /// <param name="sourceDir">The source directory.</param>
         /// <param name="destDir">The destination directory.</param>
-        public static void CopyDirectory(string sourceDir, string destDir)
+        public void CopyDirectory(string sourceDir, string destDir)
         {
             if (!SIO.Directory.Exists(destDir))
                 SIO.Directory.CreateDirectory(destDir);

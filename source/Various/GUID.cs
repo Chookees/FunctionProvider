@@ -1,12 +1,22 @@
 ﻿namespace FunctionProvider.Various
 {
-    public class GUID
+    public sealed class GUID
     {
+        #region Lazy initialization
+
+        private static readonly Lazy<GUID> lazy = new Lazy<GUID>(() => new GUID());
+
+        public static GUID Task { get { return lazy.Value; } }
+
+        private GUID() { }
+
+        #endregion
+
         /// <summary>
         /// Generates a new GUID.
         /// </summary>
         /// <returns>New GUID.</returns>
-        public static Guid Generate()
+        public Guid Generate()
         {
             return new Guid();
         }
@@ -16,7 +26,7 @@
         /// </summary>
         /// <param name="guid">guid as string.</param>
         /// <returns>Parsed GUID on success else Guid.Empty.</returns>
-        public static Guid ParseToGuid(string guid)
+        public Guid ParseToGuid(string guid)
         {
             if (string.IsNullOrEmpty(guid) || string.IsNullOrWhiteSpace(guid))
             {
@@ -38,7 +48,7 @@
         /// </summary>
         /// <param name="guid">guid as Guid.</param>
         /// <returns>Guid as string.</returns>
-        public static string ParseToString(Guid guid)
+        public string ParseToString(Guid guid)
         {
             return guid.ToString();
         }
@@ -48,7 +58,7 @@
         /// </summary>
         /// <param name="guid">Guid to extract the hashcode from.</param>
         /// <returns>Hashcode as int.</returns>
-        public static int GetHashcode(Guid guid)
+        public int GetHashcode(Guid guid)
         {
             return guid.GetHashCode();
         }
@@ -58,7 +68,7 @@
         /// </summary>
         /// <param name="guid">The GUID to validate.</param>
         /// <returns>True if the GUID is valid, otherwise false.</returns>
-        public static bool IsValidGuid(string guid)
+        public bool IsValidGuid(string guid)
         {
             return Guid.TryParse(guid, out _);
         }

@@ -2,24 +2,35 @@
 {
     using SM = System.Math;
 
-    public class Basic
+    public sealed class Basic
     {
+
+        #region Lazy initialization
+
+        private static readonly Lazy<Basic> lazy = new Lazy<Basic>(() => new Basic());
+
+        public static Basic Task { get { return lazy.Value; } }
+
+        private Basic() { }
+
+        #endregion
+        
         /// <summary>
         /// 3.14159265358979323846
         /// </summary>
-        public static double Pi => 3.14159265358979323846;
+        public const double Pi = 3.14159265358979323846;
 
         /// <summary>
         /// 2.7182818284590452354
         /// </summary>
-        public static double E => 2.7182818284590452354;
+        public const double E = 2.7182818284590452354;
 
         /// <summary>
         /// Rounds a decimal to two numbers after comma.
         /// </summary>
         /// <param name="numberToRound">Number to be rounded.</param>
         /// <returns>Rounded number as decimal.</returns>
-        public static decimal RoundingToTwo(decimal numberToRound)
+        public decimal RoundingToTwo(decimal numberToRound)
         {
             return SM.Round(numberToRound, 2);
         }
@@ -29,7 +40,7 @@
         /// </summary>
         /// <param name="numberToRound">Number to be rounded.</param>
         /// <returns>Rounded number as double.</returns>
-        public static double RoundingToTwo(double numberToRound)
+        public double RoundingToTwo(double numberToRound)
         {
             return SM.Round(numberToRound, 2);
         }
@@ -40,7 +51,7 @@
         /// <param name="number">Number.</param>
         /// <param name="powerOf">Power to.</param>
         /// <returns>Number with the power of powerOf as double.</returns>
-        public static double Pow(double number, double powerOf)
+        public double Pow(double number, double powerOf)
         {
             return SM.Pow(number, powerOf);
         }
@@ -50,7 +61,7 @@
         /// </summary>
         /// <param name="number">Number to extract the squareroot of.</param>
         /// <returns>Squareroot of number as double.</returns>
-        public static double Sqrt(double number)
+        public double Sqrt(double number)
         {
             return SM.Sqrt(number);
         }
@@ -60,7 +71,7 @@
         /// </summary>
         /// <param name="values">Double Array of values.</param>
         /// <returns>The Standard Deviation as double.</returns>
-        public static double CalculateStandardDeviation(double[] values)
+        public double CalculateStandardDeviation(double[] values)
         {
             double mean = values.Average();
             double sumOfSquares = values.Select(val => (val - mean) * (val - mean)).Sum();
@@ -72,7 +83,7 @@
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        public static int Fibonacci(int number)
+        public int Fibonacci(int number)
         {
             if (number <= 1) return number;
             return Fibonacci(number - 1) + Fibonacci(number - 2);
@@ -83,7 +94,7 @@
         /// </summary>
         /// <param name="matrix">A 3x3 matrix represented as a 2D array.</param>
         /// <returns>-0 when invalid input, else the determinant of the matrix.</returns>
-        public static double Determinant(double[,] matrix)
+        public double Determinant(double[,] matrix)
         {
             if (matrix.GetLength(0) != 3 || matrix.GetLength(1) != 3)
             {

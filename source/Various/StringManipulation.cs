@@ -3,14 +3,24 @@
     using System.IO.Compression;
     using System.Text;
 
-    public class StringManipulation
+    public sealed class StringManipulation
     {
+        #region Lazy initialization
+
+        private static readonly Lazy<StringManipulation> lazy = new Lazy<StringManipulation>(() => new StringManipulation());
+
+        public static StringManipulation Task { get { return lazy.Value; } }
+
+        private StringManipulation() { }
+
+        #endregion
+
         /// <summary>
         /// Converts a string to CamelCase format.
         /// </summary>
         /// <param name="input">The input string.</param>
         /// <returns>The CamelCase formatted string.</returns>
-        public static string ToCamelCase(string input)
+        public string ToCamelCase(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return input;
@@ -28,7 +38,7 @@
         /// </summary>
         /// <param name="text">The input string to compress.</param>
         /// <returns>The compressed byte array.</returns>
-        public static byte[] CompressString(string text)
+        public byte[] CompressString(string text)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(text);
             using (MemoryStream ms = new MemoryStream())
@@ -46,7 +56,7 @@
         /// </summary>
         /// <param name="compressedText">The compressed byte array.</param>
         /// <returns>The decompressed string.</returns>
-        public static string DecompressString(byte[] compressedText)
+        public string DecompressString(byte[] compressedText)
         {
             using (MemoryStream ms = new MemoryStream(compressedText))
             {
@@ -65,7 +75,7 @@
         /// </summary>
         /// <param name="input">The input string.</param>
         /// <returns>A dictionary with words as keys and their frequencies as values.</returns>
-        public static Dictionary<string, int> WordFrequency(string input)
+        public Dictionary<string, int> WordFrequency(string input)
         {
             var wordFrequency = new Dictionary<string, int>();
             string[] words = input.Split(new[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
@@ -89,7 +99,7 @@
         /// </summary>
         /// <param name="text">The input text.</param>
         /// <returns>An array of palindromic words.</returns>
-        public static string[] FindPalindromes(string text)
+        public string[] FindPalindromes(string text)
         {
             var words = text.Split(new[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
             return words.Where(word => word.SequenceEqual(word.Reverse())).ToArray();
@@ -101,7 +111,7 @@
         /// <param name="text">The input text.</param>
         /// <param name="shift">The number of positions to shift each character.</param>
         /// <returns>The encrypted text.</returns>
-        public static string CaesarCipher(string text, int shift)
+        public string CaesarCipher(string text, int shift)
         {
             return new string(text.Select(c =>
             {

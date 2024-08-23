@@ -3,10 +3,19 @@
     using System.Security.Cryptography;
     using SR = System.Random;
 
-    public class Random
+    public sealed class Random
     {
+        #region Lazy initialization
 
-        private static readonly SR _random = new SR();
+        private static readonly Lazy<Random> lazy = new Lazy<Random>(() => new Random());
+
+        public static Random Task { get { return lazy.Value; } }
+
+        private Random() { }
+
+        #endregion
+
+        private readonly SR _random = new SR();
 
         /// <summary>
         /// Generates a random integer between the specified minimum and maximum values.
@@ -14,7 +23,7 @@
         /// <param name="min">The inclusive lower bound.</param>
         /// <param name="max">The inclusive upper bound.</param>
         /// <returns>A random integer between min and max.</returns>
-        public static int GenerateRandomInt(int min, int max)
+        public int GenerateRandomInt(int min, int max)
         {
             return _random.Next(min, max + 1);
         }
@@ -24,7 +33,7 @@
         /// </summary>
         /// <param name="length">The length of the random string.</param>
         /// <returns>A random string of the specified length.</returns>
-        public static string GenerateRandomString(int length)
+        public string GenerateRandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             return new string(Enumerable.Repeat(chars, length)
@@ -35,7 +44,7 @@
         /// Generates a random double between 0.0 and 1.0.
         /// </summary>
         /// <returns>A random double between 0.0 and 1.0.</returns>
-        public static double GenerateRandomDouble()
+        public double GenerateRandomDouble()
         {
             return _random.NextDouble();
         }
@@ -44,7 +53,7 @@
         /// Shuffles an array of integers.
         /// </summary>
         /// <param name="array">The array to shuffle.</param>
-        public static void ShuffleArray(int[] array)
+        public void ShuffleArray(int[] array)
         {
             for (int i = array.Length - 1; i > 0; i--)
             {
@@ -60,7 +69,7 @@
         /// </summary>
         /// <param name="length">The length of the random string.</param>
         /// <returns>A cryptographically secure random string of the specified length.</returns>
-        public static string GenerateSecureRandomString(int length)
+        public string GenerateSecureRandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             using (var crypto = new RNGCryptoServiceProvider())
@@ -77,7 +86,7 @@
         /// <typeparam name="T">The type of the elements in the array.</typeparam>
         /// <param name="array">The array to permute.</param>
         /// <returns>A random permutation of the array.</returns>
-        public static T[] GenerateRandomPermutation<T>(T[] array)
+        public T[] GenerateRandomPermutation<T>(T[] array)
         {
             var result = array.ToArray();
             for (int i = result.Length - 1; i > 0; i--)
@@ -98,7 +107,7 @@
         /// <param name="minValue">The minimum value for the matrix elements.</param>
         /// <param name="maxValue">The maximum value for the matrix elements.</param>
         /// <returns>A random matrix with the specified dimensions and value range.</returns>
-        public static int[,] GenerateRandomMatrix(int rows, int columns, int minValue, int maxValue)
+        public int[,] GenerateRandomMatrix(int rows, int columns, int minValue, int maxValue)
         {
             var matrix = new int[rows, columns];
             for (int i = 0; i < rows; i++)
@@ -117,7 +126,7 @@
         /// <param name="nodes">The number of nodes in the graph.</param>
         /// <param name="edges">The number of edges in the graph.</param>
         /// <returns>A random graph represented as an adjacency list.</returns>
-        public static Dictionary<int, List<int>> GenerateRandomGraph(int nodes, int edges)
+        public Dictionary<int, List<int>> GenerateRandomGraph(int nodes, int edges)
         {
             var graph = new Dictionary<int, List<int>>();
             for (int i = 0; i < nodes; i++)
@@ -145,7 +154,7 @@
         /// <param name="length">The length of the password.</param>
         /// <param name="includeSpecialChars">Whether to include special characters in the password.</param>
         /// <returns>A random password with the specified length and complexity.</returns>
-        public static string GenerateRandomPassword(int length, bool includeSpecialChars)
+        public string GenerateRandomPassword(int length, bool includeSpecialChars)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             const string specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";

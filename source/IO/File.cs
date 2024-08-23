@@ -2,12 +2,22 @@
 {
     using SIO = System.IO;
 
-    public static class File
+    public sealed class File
     {
-        private static string extForFile = ".txt";
-        private static string nameForFile = "temp";
-        private static string pathForFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        private static StreamWriter writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)+"\\temp.txt");
+        #region Lazy initialization
+
+        private static readonly Lazy<File> lazy = new Lazy<File>(() => new File());
+
+        public static File Task { get { return lazy.Value; } }
+
+        private File() { }
+
+        #endregion
+
+        private string extForFile = ".txt";
+        private string nameForFile = "temp";
+        private string pathForFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        private StreamWriter writer = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)+"\\temp.txt");
 
         /// <summary>
         /// Creates a file and fills it with content.
@@ -15,7 +25,7 @@
         /// <param name="fullPath">Full path to File with Directory,Name and Extension.</param>
         /// <param name="content">Content of file.</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes CreateFile(string fullPath, string[] content)
+        public ReturnCodes CreateFile(string fullPath, string[] content)
         {
             ReturnCodes returnCode = ReturnCodes.Undefined;
 
@@ -38,7 +48,7 @@
         /// </summary>
         /// <param name="fullPath">Full path to file.</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes DeleteFile(string fullPath)
+        public ReturnCodes DeleteFile(string fullPath)
         {
             ReturnCodes returnCode = ReturnCodes.Undefined;
 
@@ -76,7 +86,7 @@
         /// <param name="sourcePath">Source file path.</param>
         /// <param name="destinationPath">Target file path.</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes CopyFile(string sourcePath, string destinationPath)
+        public ReturnCodes CopyFile(string sourcePath, string destinationPath)
         {
             try
             {
@@ -101,7 +111,7 @@
         /// <param name="name">Name of the file.</param>
         /// <param name="extension">Extension of the file e.g. .txt/.ini/.cfg/.log..</param>
         /// <returns>ReturnCode based on result.</returns>
-        public static ReturnCodes CreateWriter(string path, string name, string extension)
+        public ReturnCodes CreateWriter(string path, string name, string extension)
         {
             try
             {
@@ -140,7 +150,7 @@
         /// </summary>
         /// <param name="path">Path to new directory.</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes ChangeDir(string path)
+        public ReturnCodes ChangeDir(string path)
         {
             if (Path.Exists(path))
             {
@@ -183,7 +193,7 @@
         /// </summary>
         /// <param name="newName">New Name for the file.</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes ChangeFileName(string newName)
+        public ReturnCodes ChangeFileName(string newName)
         {
             try
             {
@@ -213,7 +223,7 @@
         /// </summary>
         /// <param name="newExtension">New Extension like '.txt' or '.ini'</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes ChangeExtenstion(string newExtension)
+        public ReturnCodes ChangeExtenstion(string newExtension)
         {
             ReturnCodes returnCode = ReturnCodes.Undefined;
 
@@ -252,7 +262,7 @@
         /// </summary>
         /// <param name="texts">Array of strings</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes WriteAll(string[] texts)
+        public ReturnCodes WriteAll(string[] texts)
         {
             try
             {
@@ -275,7 +285,7 @@
         /// </summary>
         /// <param name="text">Line of text.</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes WriteLine(string text)
+        public ReturnCodes WriteLine(string text)
         {
             try
             {
@@ -295,7 +305,7 @@
         /// </summary>
         /// <param name="text">Text to write in line.</param>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes Write(string text)
+        public ReturnCodes Write(string text)
         {
             try
             {
@@ -314,7 +324,7 @@
         /// Forces a save to the file.
         /// </summary>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes ForceSave()
+        public ReturnCodes ForceSave()
         {
             ReturnCodes returnCode = ReturnCodes.Undefined;
 
@@ -339,7 +349,7 @@
         /// </summary>
         /// <param name="path">Path to the file that should be read.</param>
         /// <returns>Content as string / string.Empty when exception occured.</returns>
-        public static string ReadFile(string path)
+        public string ReadFile(string path)
         {
             try
             {
@@ -357,7 +367,7 @@
         /// Reads the Writers file and returns the content as string.
         /// </summary>
         /// <returns>Content as string / string.Empty when exception occured.</returns>
-        public static string ReadFile()
+        public string ReadFile()
         {
             string result = string.Empty;
             try
@@ -401,7 +411,7 @@
         /// Closes the File. Saving to the file happen here if ForceSave() was not called.
         /// </summary>
         /// <returns>Returncode based on result.</returns>
-        public static ReturnCodes Close()
+        public ReturnCodes Close()
         {
             ReturnCodes returnCode = ReturnCodes.Undefined;
 
@@ -421,7 +431,7 @@
         }
 
         #region privates
-        private static bool IsValid(string path, string name, string ext)
+        private bool IsValid(string path, string name, string ext)
         {
             if (Path.Exists(path))
             {
@@ -441,7 +451,7 @@
             return false;
         }
 
-        private static string? MergePath(string path, string name, string extension)
+        private string? MergePath(string path, string name, string extension)
         {
             if ((path != null) && (name != null) && (extension != null))
             {
