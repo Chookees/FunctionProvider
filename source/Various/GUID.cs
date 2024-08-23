@@ -52,5 +52,15 @@
         {
             return guid.GetHashCode();
         }
+
+        /// <summary>
+        /// Validates if the input string is a valid GUID.
+        /// </summary>
+        /// <param name="guid">The GUID to validate.</param>
+        /// <returns>True if the GUID is valid, otherwise false.</returns>
+        public static bool IsValidGuid(string guid)
+        {
+            return Guid.TryParse(guid, out _);
+        }
     }
 }
