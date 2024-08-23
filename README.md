@@ -16,14 +16,12 @@ This DLL is designed to streamline and enhance the development process for C# pr
 
 ### 1. IO
 - File
-    - Change Directory of File
-    - Change Name of File
-    - Change Extension of File
+    - Change Directory of current File
+    - Change Name of current File
+    - Change Extension of current File
     - Read File
     - Edit File
-    - Create File
-    - Delete File
-    - Copy File
+    - and more..
 - Directory
     - Get Drives
     - Get Drive with most free space
@@ -38,6 +36,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Power of
     - Squareroot
     - Calculate standard deviation
+    - and more..
 - Advanced
     - Tangent calculation
     - Heat Equation
@@ -50,4 +49,26 @@ This DLL is designed to streamline and enhance the development process for C# pr
 
 ### 5. Various
 - GUID
+    - Generate
+    - Parse to string
+    - IsValidGuid
+    - GetHashcode
+    - Parse to guid
 - String manipulation
+    - To camel case
+    - Compress string
+    - Decompress string
+    - Word frequency
+    - Caesar cipher
+    - and more..
+- Random
+    - Generate random int
+    - Generate random string
+    - Shuffle array
+    - Generate secure random string
+    - Generate Random permutation
+    - and more..
+- Validation
+    - IsValidEmail
+    - IsValidPhoneNumber
+    - IsValidUrl
