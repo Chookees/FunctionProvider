@@ -73,5 +73,28 @@
 
             return null;
         }
+
+        /// <summary>
+        /// Recursively copies all files from one directory to another.
+        /// </summary>
+        /// <param name="sourceDir">The source directory.</param>
+        /// <param name="destDir">The destination directory.</param>
+        public static void CopyDirectory(string sourceDir, string destDir)
+        {
+            if (!SIO.Directory.Exists(destDir))
+                SIO.Directory.CreateDirectory(destDir);
+
+            foreach (var file in SIO.Directory.GetFiles(sourceDir))
+            {
+                var destFile = Path.Combine(destDir, Path.GetFileName(file));
+                SIO.File.Copy(file, destFile, true);
+            }
+
+            foreach (var dir in SIO.Directory.GetDirectories(sourceDir))
+            {
+                var destSubDir = Path.Combine(destDir, Path.GetFileName(dir));
+                CopyDirectory(dir, destSubDir);
+            }
+        }
     }
 }

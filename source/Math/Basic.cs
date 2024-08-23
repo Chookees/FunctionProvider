@@ -66,5 +66,33 @@
             double sumOfSquares = values.Select(val => (val - mean) * (val - mean)).Sum();
             return SM.Sqrt(sumOfSquares / values.Length);
         }
+
+        /// <summary>
+        /// Calculates the n-th Fibonacci number recursive.
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public static int Fibonacci(int number)
+        {
+            if (number <= 1) return number;
+            return Fibonacci(number - 1) + Fibonacci(number - 2);
+        }
+
+        /// <summary>
+        /// Calculates the determinant of a 3x3 matrix.
+        /// </summary>
+        /// <param name="matrix">A 3x3 matrix represented as a 2D array.</param>
+        /// <returns>-0 when invalid input, else the determinant of the matrix.</returns>
+        public static double Determinant(double[,] matrix)
+        {
+            if (matrix.GetLength(0) != 3 || matrix.GetLength(1) != 3)
+            {
+                return -0;
+            }
+
+            return matrix[0, 0] * (matrix[1, 1] * matrix[2, 2] - matrix[1, 2] * matrix[2, 1])
+                 - matrix[0, 1] * (matrix[1, 0] * matrix[2, 2] - matrix[1, 2] * matrix[2, 0])
+                 + matrix[0, 2] * (matrix[1, 0] * matrix[2, 1] - matrix[1, 1] * matrix[2, 0]);
+        }
     }
 }

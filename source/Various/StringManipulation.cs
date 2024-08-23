@@ -85,5 +85,32 @@ namespace FunctionProvider.Various
             }
             return wordFrequency;
         }
+
+        /// <summary>
+        /// Finds all palindromes in a given text.
+        /// </summary>
+        /// <param name="text">The input text.</param>
+        /// <returns>An array of palindromic words.</returns>
+        public static string[] FindPalindromes(string text)
+        {
+            var words = text.Split(new[] { ' ', '.', ',', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+            return words.Where(word => word.SequenceEqual(word.Reverse())).ToArray();
+        }
+
+        /// <summary>
+        /// Encrypts a text using the Caesar cipher method.
+        /// </summary>
+        /// <param name="text">The input text.</param>
+        /// <param name="shift">The number of positions to shift each character.</param>
+        /// <returns>The encrypted text.</returns>
+        public static string CaesarCipher(string text, int shift)
+        {
+            return new string(text.Select(c =>
+            {
+                if (!char.IsLetter(c)) return c;
+                char offset = char.IsUpper(c) ? 'A' : 'a';
+                return (char)(((c + shift - offset) % 26) + offset);
+            }).ToArray());
+        }
     }
 }
