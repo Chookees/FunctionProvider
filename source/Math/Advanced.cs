@@ -210,5 +210,81 @@
         }
 
         #endregion
+
+        #region Matrix multiplication
+
+        /// <summary>
+        /// Multiplies two matrices A and B.
+        /// </summary>
+        /// <param name="matrixA">The first matrix A.</param>
+        /// <param name="matrixB">The second matrix B.</param>
+        /// <returns>The resulting matrix after multiplication.</returns>
+        /// <exception cref="ArgumentException">Thrown when the number of columns in matrix A does not equal the number of rows in matrix B.</exception>
+        public static double[,] MatrixMultiplication(double[,] matrixA, double[,] matrixB)
+        {
+            int rowsA = matrixA.GetLength(0);
+            int columnsA = matrixA.GetLength(1);
+            int rowsB = matrixB.GetLength(0);
+            int columnsB = matrixB.GetLength(1);
+
+            if (columnsA != rowsB)
+            {
+                throw new ArgumentException("The number of columns in matrix A must equal the number of rows in matrix B.");
+            }
+
+            double[,] resultMatrix = new double[rowsA, columnsB];
+
+            for (int i = 0; i < rowsA; i++)
+            {
+                for (int j = 0; j < columnsB; j++)
+                {
+                    resultMatrix[i, j] = 0;
+                    for (int k = 0; k < columnsA; k++)
+                    {
+                        resultMatrix[i, j] += matrixA[i, k] * matrixB[k, j];
+                    }
+                }
+            }
+
+            return resultMatrix;
+        }
+
+        #endregion
+
+        #region SolveQuadraticEquation()
+
+        /// <summary>
+        /// Solves a quadratic equation of the form ax^2 + bx + c = 0.
+        /// </summary>
+        /// <param name="coefficientA">The coefficient a.</param>
+        /// <param name="coefficientB">The coefficient b.</param>
+        /// <param name="constantC">The constant term c.</param>
+        /// <returns>A tuple containing the two solutions (x1, x2). If there are no real solutions, both values will be null.</returns>
+        public static (double? x1, double? x2) SolveQuadraticEquation(double coefficientA, double coefficientB, double constantC)
+        {
+            double discriminant = coefficientB * coefficientB - 4 * coefficientA * constantC;
+
+            if (discriminant < 0)
+            {
+                // No real solutions
+                return (null, null);
+            }
+            else if (discriminant == 0)
+            {
+                // One double solution
+                double x = -coefficientB / (2 * coefficientA);
+                return (x, x);
+            }
+            else
+            {
+                // Two distinct solutions
+                double sqrtDiscriminant = Math.Sqrt(discriminant);
+                double x1 = (-coefficientB + sqrtDiscriminant) / (2 * coefficientA);
+                double x2 = (-coefficientB - sqrtDiscriminant) / (2 * coefficientA);
+                return (x1, x2);
+            }
+        }
+
+        #endregion
     }
 }
