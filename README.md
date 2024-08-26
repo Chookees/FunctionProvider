@@ -2,19 +2,26 @@
 This .Net8 based .dll can be imported in any C# Project.
 This DLL is designed to streamline and enhance the development process for C# projects by consolidating a variety of essential functions into a single, easy-to-use, and efficient library.
 
-### Key Benefits:
+## Table of Content
+1) [Key Benefits](https://github.com/Chookees/FunctionProvider/tree/main?tab=readme-ov-file#key-benefits)
+2) [Functions](https://github.com/Chookees/FunctionProvider/tree/main#functions)
+3) [Example Usage](https://github.com/Chookees/FunctionProvider/tree/main#example-usage)
+4) [Tbd](https://website-name.com)
+5) [Tbd](https://website-name.com)
+
+# Key Benefits:
 - Centralized Functionality: Combines multiple commonly used functions, reducing redundancy and simplifying code maintenance.
 - Ease of Use: Provides a straightforward API, making it accessible for developers of all skill levels.
 - Efficiency: Optimized for performance to ensure minimal overhead and fast execution.
 
-## Functions
-1) IO
-2) Math
-3) XX
-4) XX
-5) Various
+# Functions
+1) [IO](https://github.com/Chookees/FunctionProvider/tree/main#1-io)
+2) [Math](https://github.com/Chookees/FunctionProvider/tree/main#2-math)
+3) [XX](https://github.com/Chookees/FunctionProvider/tree/main#3-xx)
+4) [XX](https://github.com/Chookees/FunctionProvider/tree/main#4-xx)
+5) [Various](https://github.com/Chookees/FunctionProvider/tree/main#5-various)
 
-### 1. IO
+## 1. IO
 - File
     - Change Directory of current File
     - Change Name of current File
@@ -28,7 +35,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Get all files from a directory
     - Get specific file from directory
 
-### 2. Math
+## 2. Math
 - Basic
     - PI
     - E
@@ -44,11 +51,11 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Curvature calculation
     - 2-D Wave Equation
 
-### 3. XX
+## 3. XX
 
-### 4. XX
+## 4. XX
 
-### 5. Various
+## 5. Various
 - GUID
     - Generate
     - Parse to string
@@ -73,3 +80,36 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - IsValidEmail
     - IsValidPhoneNumber
     - IsValidUrl
+
+# Example Usage
+1) Import the .dll to your Project.
+2) Add a using
+   > using FunctionProvider;
+    - Or if you need just one of all the Functions:
+   > using FunctionProvider.Various;
+3) Use a function:
+   > Guid myGuid = FunctionProvider.Various.GUID.Task.Generate();
+   - if you set your using like this you could:
+   > using FP = FunctionProvider.Various;
+   > Guid myGuid = FP.GUID.Task.Generate();
+
+Following Code represents the usecase of you wanting to delete a specific file:
+```
+namespace FileDeleter
+{
+    using FPIO = FunctionProvider.IO;
+    public class FileDeleter
+    {
+        public FileDeleter(string path)
+        {
+            FPIO.ReturnCodes code = FPIO.File.Task.DeleteFile(path);
+
+            if (code != FPIO.ReturnCodes.Success)
+            {
+                // File deletion failed.
+                throw new Exception();
+            }
+        }
+    }
+}
+```
