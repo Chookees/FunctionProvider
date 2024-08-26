@@ -278,7 +278,7 @@
             else
             {
                 // Two distinct solutions
-                double sqrtDiscriminant = Math.Sqrt(discriminant);
+                double sqrtDiscriminant = SM.Sqrt(discriminant);
                 double x1 = (-coefficientB + sqrtDiscriminant) / (2 * coefficientA);
                 double x2 = (-coefficientB - sqrtDiscriminant) / (2 * coefficientA);
                 return (x1, x2);
