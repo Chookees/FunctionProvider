@@ -50,6 +50,7 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Torsion calculation
     - Curvature calculation
     - 2-D Wave Equation
+    - and more..
 
 ## 3. XX
 
