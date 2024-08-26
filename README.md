@@ -6,8 +6,6 @@ This DLL is designed to streamline and enhance the development process for C# pr
 1) [Key Benefits](https://github.com/Chookees/FunctionProvider/tree/main?tab=readme-ov-file#key-benefits)
 2) [Functions](https://github.com/Chookees/FunctionProvider/tree/main#functions)
 3) [Example Usage](https://github.com/Chookees/FunctionProvider/tree/main#example-usage)
-4) [Tbd](https://website-name.com)
-5) [Tbd](https://website-name.com)
 
 # Key Benefits:
 - Centralized Functionality: Combines multiple commonly used functions, reducing redundancy and simplifying code maintenance.
@@ -17,8 +15,6 @@ This DLL is designed to streamline and enhance the development process for C# pr
 # Functions
 1) [IO](https://github.com/Chookees/FunctionProvider/tree/main#1-io)
 2) [Math](https://github.com/Chookees/FunctionProvider/tree/main#2-math)
-3) [XX](https://github.com/Chookees/FunctionProvider/tree/main#3-xx)
-4) [XX](https://github.com/Chookees/FunctionProvider/tree/main#4-xx)
 5) [Various](https://github.com/Chookees/FunctionProvider/tree/main#5-various)
 
 ## 1. IO
@@ -50,12 +46,9 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Torsion calculation
     - Curvature calculation
     - 2-D Wave Equation
+    - and more..
 
-## 3. XX
-
-## 4. XX
-
-## 5. Various
+## 3. Various
 - GUID
     - Generate
     - Parse to string
