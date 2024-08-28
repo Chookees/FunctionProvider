@@ -47,6 +47,14 @@ This DLL is designed to streamline and enhance the development process for C# pr
     - Curvature calculation
     - 2-D Wave Equation
     - and more..
+- Sort
+    - Bubble sort
+    - Selection sort
+    - Insertion sort
+    - Merge sort
+    - Quick sort
+    - Heap sort
+    - Shell sort
 
 ## 3. Various
 - GUID
